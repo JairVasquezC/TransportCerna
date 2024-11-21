@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Realizar venta')
+@section('title','Realizar venta de pasajes')
 
 @push('css')
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css">
@@ -10,11 +10,11 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <h3 class="mt-4 text-center text-black">Realizar Venta</h3>
+    <h3 class="mt-4 text-center text-black">Realizar Venta de pasajes</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('ventas.index')}}">Ventas</a></li>
-        <li class="breadcrumb-item active">Realizar Venta</li>
+        <li class="breadcrumb-item"><a href="{{ route('ventas.index')}}">Ventas de pasajes</a></li>
+        <li class="breadcrumb-item active">Realizar Venta de pasajes</li>
     </ol>
 </div>
 
@@ -22,7 +22,81 @@
     @csrf
     <div class="container-lg mt-4">
         <div class="row gy-4">
+<!-----Venta---->
+<div class="col-xl-4">
+    <div class="text-white bg-info p-1 text-center">
+        Datos generales
+    </div>
+    <div class="p-3 border border-3 border-info">
+        <div class="row gy-4">
+            <!--Cliente-->
+            <div class="col-12">
+                <label for="cliente_id" class="form-label">Cliente:</label>
+                <select name="cliente_id" id="cliente_id" class="form-control selectpicker show-tick" data-live-search="true" title="Selecciona" data-size='2'>
+                    @foreach ($clientes as $item)
+                    <option value="{{$item->id}}">{{$item->persona->razon_social}}</option>
+                    @endforeach
+                </select>
+                @error('cliente_id')
+                <small class="text-danger">{{ '*'.$message }}</small>
+                @enderror
+            </div>
 
+            <!--Tipo de comprobante-->
+            <div class="col-12">
+                <label for="comprobante_id" class="form-label">Comprobante:</label>
+                <select name="comprobante_id" id="comprobante_id" class="form-control selectpicker" title="Selecciona">
+                    @foreach ($comprobantes as $item)
+                    <option value="{{$item->id}}">{{$item->tipo_comprobante}}</option>
+                    @endforeach
+                </select>
+                @error('comprobante_id')
+                <small class="text-danger">{{ '*'.$message }}</small>
+                @enderror
+            </div>
+
+            <!--Numero de comprobante-->
+            <div class="col-12">
+                <label for="numero_comprobante" class="form-label">Numero de comprobante:</label>
+                <input required type="text" name="numero_comprobante" id="numero_comprobante" class="form-control">
+                @error('numero_comprobante')
+                <small class="text-danger">{{ '*'.$message }}</small>
+                @enderror
+            </div>
+
+            <!--Impuesto---->
+            <div class="col-sm-6">
+                <label for="impuesto" class="form-label">Impuesto(IGV):</label>
+                <input readonly type="text" name="impuesto" id="impuesto" class="form-control border-info">
+                @error('impuesto')
+                <small class="text-danger">{{ '*'.$message }}</small>
+                @enderror
+            </div>
+
+            <!--Fecha--->
+            <div class="col-sm-6">
+                <label for="fecha" class="form-label">Fecha:</label>
+                <input readonly type="date" name="fecha" id="fecha" class="form-control border-info" value="<?php echo date("Y-m-d") ?>">
+                <?php
+
+                use Carbon\Carbon;
+
+                $fecha_hora = Carbon::now()->toDateTimeString();
+                ?>
+                <input type="hidden" name="fecha_hora" value="{{$fecha_hora}}">
+            </div>
+
+            <!----User--->
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
+            <!--Botones--->
+            <div class="col-12 text-center">
+                <button type="submit" class="btn btn-success" id="guardar">Realizar venta</button>
+            </div>
+
+        </div>
+    </div>
+</div>
             <!------venta producto---->
             <div class="col-xl-8">
                 <div class="text-white bg-secondary p-1 text-center">
@@ -133,81 +207,7 @@
                 </div>
             </div>
 
-            <!-----Venta---->
-            <div class="col-xl-4">
-                <div class="text-white bg-info p-1 text-center">
-                    Datos generales
-                </div>
-                <div class="p-3 border border-3 border-info">
-                    <div class="row gy-4">
-                        <!--Cliente-->
-                        <div class="col-12">
-                            <label for="cliente_id" class="form-label">Cliente:</label>
-                            <select name="cliente_id" id="cliente_id" class="form-control selectpicker show-tick" data-live-search="true" title="Selecciona" data-size='2'>
-                                @foreach ($clientes as $item)
-                                <option value="{{$item->id}}">{{$item->persona->razon_social}}</option>
-                                @endforeach
-                            </select>
-                            @error('cliente_id')
-                            <small class="text-danger">{{ '*'.$message }}</small>
-                            @enderror
-                        </div>
-
-                        <!--Tipo de comprobante-->
-                        <div class="col-12">
-                            <label for="comprobante_id" class="form-label">Comprobante:</label>
-                            <select name="comprobante_id" id="comprobante_id" class="form-control selectpicker" title="Selecciona">
-                                @foreach ($comprobantes as $item)
-                                <option value="{{$item->id}}">{{$item->tipo_comprobante}}</option>
-                                @endforeach
-                            </select>
-                            @error('comprobante_id')
-                            <small class="text-danger">{{ '*'.$message }}</small>
-                            @enderror
-                        </div>
-
-                        <!--Numero de comprobante-->
-                        <div class="col-12">
-                            <label for="numero_comprobante" class="form-label">Numero de comprobante:</label>
-                            <input required type="text" name="numero_comprobante" id="numero_comprobante" class="form-control">
-                            @error('numero_comprobante')
-                            <small class="text-danger">{{ '*'.$message }}</small>
-                            @enderror
-                        </div>
-
-                        <!--Impuesto---->
-                        <div class="col-sm-6">
-                            <label for="impuesto" class="form-label">Impuesto(IGV):</label>
-                            <input readonly type="text" name="impuesto" id="impuesto" class="form-control border-info">
-                            @error('impuesto')
-                            <small class="text-danger">{{ '*'.$message }}</small>
-                            @enderror
-                        </div>
-
-                        <!--Fecha--->
-                        <div class="col-sm-6">
-                            <label for="fecha" class="form-label">Fecha:</label>
-                            <input readonly type="date" name="fecha" id="fecha" class="form-control border-info" value="<?php echo date("Y-m-d") ?>">
-                            <?php
-
-                            use Carbon\Carbon;
-
-                            $fecha_hora = Carbon::now()->toDateTimeString();
-                            ?>
-                            <input type="hidden" name="fecha_hora" value="{{$fecha_hora}}">
-                        </div>
-
-                        <!----User--->
-                        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-
-                        <!--Botones--->
-                        <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-success" id="guardar">Realizar venta</button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 

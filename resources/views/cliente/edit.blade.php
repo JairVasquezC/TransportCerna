@@ -79,7 +79,7 @@
 
             </div>
             <div class="card-footer text-center">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-danger">Guardar</button>
             </div>
         </form>
     </div>
