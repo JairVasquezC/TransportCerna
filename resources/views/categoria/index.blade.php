@@ -15,16 +15,16 @@
 @include('layouts.partials.alert')
  
 <div class="container-fluid px-4">
-    <h1 class="mt-4 text-center">Categorías</h1>
+    <h3 class="mt-4 text-center text-black">Categorías</h3>
     <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
+        <li class="breadcrumb-item text-black"><a href="{{ route('panel') }}">Inicio</a></li>
         <li class="breadcrumb-item active">Categorías</li>
     </ol>
 
     @can('crear-categoria')
     <div class="mb-4">
         <a href="{{route('categorias.create')}}">
-            <button type="button" class="btn btn-primary">Añadir nuevo registro</button>
+            <button type="button" class="btn btn-warning">Nuevo registro</button>
         </a>
     </div>
     @endcan
@@ -34,8 +34,8 @@
             <i class="fas fa-table me-1"></i>
             Tabla categorías
         </div>
-        <div class="card-body">
-            <table id="datatablesSimple" class="table-striped fs-6">
+        <div class="card-body text-center">
+            <table id="datatablesSimple" class="table-striped fs-6 text-center">
                 <thead>
                     <tr>
                         <th>Nombre</th>

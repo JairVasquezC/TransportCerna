@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4 text-center">Realizar Venta</h1>
+    <h3 class="mt-4 text-center text-black">Realizar Venta</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
         <li class="breadcrumb-item"><a href="{{ route('ventas.index')}}">Ventas</a></li>
@@ -25,10 +25,10 @@
 
             <!------venta producto---->
             <div class="col-xl-8">
-                <div class="text-white bg-primary p-1 text-center">
+                <div class="text-white bg-secondary p-1 text-center">
                     Detalles de la venta
                 </div>
-                <div class="p-3 border border-3 border-primary">
+                <div class="p-3 border border-3 border-secondary">
                     <div class="row gy-4">
 
                         <!-----Producto---->
@@ -72,14 +72,14 @@
 
                         <!-----botón para agregar--->
                         <div class="col-12 text-end">
-                            <button id="btn_agregar" class="btn btn-primary" type="button">Agregar</button>
+                            <button id="btn_agregar" class="btn btn-warning" type="button">Agregar</button>
                         </div>
 
                         <!-----Tabla para el detalle de la venta--->
                         <div class="col-12">
                             <div class="table-responsive">
                                 <table id="tabla_detalle" class="table table-hover">
-                                    <thead class="bg-primary">
+                                    <thead class="bg-secondary">
                                         <tr>
                                             <th class="text-white">#</th>
                                             <th class="text-white">Producto</th>
@@ -135,10 +135,10 @@
 
             <!-----Venta---->
             <div class="col-xl-4">
-                <div class="text-white bg-success p-1 text-center">
+                <div class="text-white bg-info p-1 text-center">
                     Datos generales
                 </div>
-                <div class="p-3 border border-3 border-success">
+                <div class="p-3 border border-3 border-info">
                     <div class="row gy-4">
                         <!--Cliente-->
                         <div class="col-12">
@@ -178,7 +178,7 @@
                         <!--Impuesto---->
                         <div class="col-sm-6">
                             <label for="impuesto" class="form-label">Impuesto(IGV):</label>
-                            <input readonly type="text" name="impuesto" id="impuesto" class="form-control border-success">
+                            <input readonly type="text" name="impuesto" id="impuesto" class="form-control border-info">
                             @error('impuesto')
                             <small class="text-danger">{{ '*'.$message }}</small>
                             @enderror
@@ -187,7 +187,7 @@
                         <!--Fecha--->
                         <div class="col-sm-6">
                             <label for="fecha" class="form-label">Fecha:</label>
-                            <input readonly type="date" name="fecha" id="fecha" class="form-control border-success" value="<?php echo date("Y-m-d") ?>">
+                            <input readonly type="date" name="fecha" id="fecha" class="form-control border-info" value="<?php echo date("Y-m-d") ?>">
                             <?php
 
                             use Carbon\Carbon;

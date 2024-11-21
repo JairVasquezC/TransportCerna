@@ -15,7 +15,7 @@
 @include('layouts.partials.alert')
 
 <div class="container-fluid px-4">
-    <h1 class="mt-4 text-center">Productos</h1>
+    <h1 class="mt-4 text-black text-center">Productos</h1>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
         <li class="breadcrumb-item active">Productos</li>
@@ -24,7 +24,7 @@
     @can('crear-producto')
     <div class="mb-4">
         <a href="{{route('productos.create')}}">
-            <button type="button" class="btn btn-primary">Añadir nuevo registro</button>
+            <button type="button" class="btn btn-warning">Nuevo registro</button>
         </a>
     </div>
     @endcan

@@ -24,7 +24,7 @@
     @can('crear-cliente')
     <div class="mb-4">
         <a href="{{route('clientes.create')}}">
-            <button type="button" class="btn btn-primary">Añadir nuevo registro</button>
+            <button type="button" class="btn btn-warning">Nuevo registro</button>
         </a>
     </div>
     @endcan

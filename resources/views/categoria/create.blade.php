@@ -12,7 +12,7 @@
 
 @section('content')
 <div class="container-fluid px-4">
-    <h1 class="mt-4 text-center">Crear Categoría</h1>
+    <h3 class="mt-4 text-center text-black">Crear Categoría</h3>
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><a href="{{ route('panel') }}">Inicio</a></li>
         <li class="breadcrumb-item"><a href="{{ route('categorias.index')}}">Categorías</a></li>
@@ -44,7 +44,7 @@
 
             </div>
             <div class="card-footer text-center">
-                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="submit" class="btn btn-warning">Guardar</button>
             </div>
         </form>
     </div>

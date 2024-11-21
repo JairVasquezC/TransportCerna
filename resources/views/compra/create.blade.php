@@ -25,10 +25,10 @@
         <div class="row gy-4">
             <!------Compra producto---->
             <div class="col-xl-8">
-                <div class="text-white bg-primary p-1 text-center">
+                <div class="text-white bg-secondary p-1 text-center">
                     Detalles de la compra
                 </div>
-                <div class="p-3 border border-3 border-primary">
+                <div class="p-3 border border-3 border-secondary">
                     <div class="row">
                         <!-----Producto---->
                         <div class="col-12 mb-4">
